@@ -1,0 +1,11 @@
+{
+  firstName: "",
+  lastName: "",
+  emailAddress: "",
+  street: "",
+  apartment: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  phoneNumber: ""
+}

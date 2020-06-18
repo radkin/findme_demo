@@ -1,0 +1,11 @@
+{
+  "firstName": "jane",
+  "lastName": "smith",
+  "emailAddress": "jsmith@anon.com",
+  "street": "anon",
+  "apartment": "1",
+  "city": "anonville",
+  "state": "North Anon",
+  "zipCode": "99999",
+  "phoneNumber": "5555555555"
+}
