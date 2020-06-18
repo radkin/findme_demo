@@ -3,8 +3,8 @@ require 'minitest/autorun'
 require_relative '../lib/user_provided_information'
 
 class UserProvidedInformationTest < Minitest::Test
-  def test_import
-    testJSON = {
+  def test_import_userpi_template
+    @testJSON = {
       "firstName"=>"jane",
       "lastName"=>"smith",
       "emailAddress"=>"jsmith@anon.com",
@@ -14,8 +14,14 @@ class UserProvidedInformationTest < Minitest::Test
       "zipCode"=>"99999",
       "phoneNumber"=>"5555555555"
     }
-    user_pi = UserProvidedInformation.new.importPI()
-    assert_equal user_pi, testJSON
+    @user_pi = UserProvidedInformation.new.import_PI()
+    assert_equal @user_pi, @testJSON
+  end
+
+  def test_create_search_query
+    @user_pi = UserProvidedInformation.new.import_PI()
+    puts(@user_pi)
+
   end
 
 end
