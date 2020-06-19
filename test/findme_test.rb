@@ -29,6 +29,7 @@ class UserProvidedInformationTest < Minitest::Test
     assert_equal "jane+smith",full_name_query
   end
 
+  # Google search engine
   def test_run_search_query
     full_name_query = "jane+smith"
     # testing use of default search engine as optional second variable
@@ -36,6 +37,26 @@ class UserProvidedInformationTest < Minitest::Test
     query_result = query.search()
     # status code should be 200
     assert_equal 200, query_result.code
+  end
+
+  # other search engines
+  def test_run_non_default_search_engine
+    search_engines = ["bing", "yandex", "yahoo", "startpage", "duckduckgo",
+      "baidu", "searchencrypt", "gigablast"]
+    full_name_query = "jane+smith"
+    search_engines.each do |engine|
+      t1 = Time.now
+      query= SearchClient.new(full_name_query)
+      query.search_engine = engine
+      print "running #{engine} search"
+      query_result = query.search()
+      t2 = Time.now
+      delta = t2 - t1
+      puts " .. took #{delta} seconds"
+      # status code should be 200
+      assert_equal 200, query_result.code
+    end
+
   end
 
 end
