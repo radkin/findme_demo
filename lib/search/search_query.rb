@@ -1,11 +1,18 @@
 class SearchQuery
 
-  def initialize()
+  def initialize(user_pi, type)
+    @user_pi  = user_pi
+    @type     = type
   end
 
-  def construct(@user_pi)
-    bogus_query = "we don't know what this format needs to be"
-    return bogus_query
+  def construct
+    case @type
+    when "full_name_query"
+      full_name_query = "#{@user_pi['firstName']}+#{@user_pi['lastName']}"
+      return full_name_query
+    else
+      puts "Invalid query type"
+    end
   end
 
 end
