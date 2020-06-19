@@ -25,8 +25,17 @@ class UserProvidedInformationTest < Minitest::Test
     type            = "full_name_query"
     search_query    = SearchQuery.new(@user_pi, type)
     full_name_query = search_query.construct
-    
+
     assert_equal "jane+smith",full_name_query
+  end
+
+  def test_run_search_query
+    full_name_query = "jane+smith"
+    # testing use of default search engine as optional second variable
+    query= SearchClient.new(full_name_query)
+    query_result = query.search()
+    # status code should be 200
+    assert_equal 200, query_result.code
   end
 
 end
