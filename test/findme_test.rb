@@ -1,6 +1,8 @@
 # gem 'minitest', '-> 5.14'
 require 'minitest/autorun'
 require_relative '../lib/user_provided_information'
+# require_relative '../lib/search/search_query'
+require_relative '../lib/search/search_client'
 
 class UserProvidedInformationTest < Minitest::Test
   def test_import_userpi_template
@@ -18,10 +20,13 @@ class UserProvidedInformationTest < Minitest::Test
     assert_equal @user_pi, @testJSON
   end
 
-  def test_create_search_query
-    @user_pi = UserProvidedInformation.new.import_PI()
-    puts(@user_pi)
-
-  end
+  # def test_create_google_search_client
+  #   client = SearchClient.new
+  #   if client
+  #     puts "client has been initialized"
+  #   else
+  #     puts "something went wrong"
+  #   end
+  # end
 
 end

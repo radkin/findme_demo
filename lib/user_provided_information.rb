@@ -1,6 +1,5 @@
 class UserProvidedInformation
 
-  require 'rest-client'
   require 'json'
 
   def initialize()
