@@ -1,4 +1,4 @@
-# gem 'minitest', '-> 5.14'
+# CONDUCTING SEARCH TESTS
 require 'minitest/autorun'
 require_relative '../lib/user_provided_information'
 require_relative '../lib/search/search_query'
@@ -56,7 +56,5 @@ class UserProvidedInformationTest < Minitest::Test
       # status code should be 200
       assert_equal 200, query_result.code
     end
-
   end
-
 end
