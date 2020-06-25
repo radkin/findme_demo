@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require_relative '../lib/search/search_client'
 require_relative '../lib/parse/parse_results'
 
-class UserProvidedInformationTest < Minitest::Test
+class ParseTest < Minitest::Test
 
   # should return a list of web links that nokogiri can parse
   def test_return_web_links_not_nil
