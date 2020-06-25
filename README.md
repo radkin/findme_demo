@@ -16,8 +16,27 @@ bundle install
 * run findme.rb and wait for results
 
 ## Testing
-while in the root directory run `test/findme_test.rb`
+while in the root directory run
+
+```bash
+ruby test/findme_search_test.rb
+ruby test/findme_parse_test.rb
+```
+
+* **search test**: query construction, reading user provided json file, confirm
+expected search engine APIs work as expected
+* **parse test**: are we getting a list of links that work? Are they something
+valid that we can use right now?
+
+## Caveats
+The following are out of scope (for now):
+* following google search links that are themselves searches
+* gathering search results past the first page
+* the end goal may very well be publishing results to a REST API which is
+logical.
+* certainly this could dovetail nicely with a front-end UI that displays results.
+
 
 ## About findme_demo
 _Author: radkin@github_
-_Version: 0.0.1_
+_Version: 0.0.2_

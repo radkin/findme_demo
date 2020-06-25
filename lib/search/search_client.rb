@@ -18,3 +18,5 @@ class SearchClient
   end
 
 end
+
+# Please note that nokogiri can use the "open" method to GET the above link
