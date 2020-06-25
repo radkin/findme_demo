@@ -11,13 +11,15 @@ class ParseTest < Minitest::Test
     query           = SearchClient.new(full_name_query)
     query_result    = query.search()
     pr              = ParseResults.new(query_result.body)
-    only_links       = pr.parse
+    all_links       = pr.parse
+
     # no empty values in our array
-    assert only_links.map{|link| !link.nil?}
+    assert all_links['direct'].map{|link| !link.nil?}
     # no google searches as we want only result links
-    assert only_links.map{|link| !link.match('google.com')}
+    assert all_links['direct'].map{|link| !link.match('google.com')}
     # everything must start with https
-    assert only_links.map{|link| link.match(/^https:\/\//)}
+    assert all_links['direct'].map{|link| link.match(/^https:\/\//)}
   end
+
 
 end

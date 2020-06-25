@@ -13,7 +13,7 @@ class ThreadTest < Minitest::Test
     query           = SearchClient.new(full_name_query)
     query_result    = query.search()
     pr              = ParseResults.new(query_result.body)
-    only_links       = pr.parse
+    links_object    = pr.parse
 
   def threaded_get_requests
     ThreadedGet.new(link)

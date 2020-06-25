@@ -7,6 +7,7 @@ class ParseResults
   end
 
   def parse
+    all_links = Hash.new()
     direct_links = []
     html_doc  = Nokogiri::HTML(@query_result)
     nodeset   = html_doc.xpath('//a')
@@ -23,9 +24,12 @@ class ParseResults
         direct_links.push(pruned_link)
       end
     end
-    # puts "recommended_search_links"
-    # puts recommended_search_links
-    return direct_links
+
+    all_links = {
+      "direct"              => direct_links,
+      "recommended_search"  => recommended_search_links
+    }
+    return all_links
   end
 
 end
