@@ -29,6 +29,12 @@ expected search engine APIs work as expected
 valid that we can use right now?
 
 ## Caveats
+The following are out of scope (for now):
+* following google search links that are themselves searches
+* gathering search results past the first page
+* the end goal may very well be publishing results to a REST API which is
+logical.
+* certainly this could dovetail nicely with a front-end UI that displays results.
 
 
 ## About findme_demo
