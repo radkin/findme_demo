@@ -7,22 +7,25 @@ class ParseResults
   end
 
   def parse
-    only_links = []
+    direct_links = []
     html_doc  = Nokogiri::HTML(@query_result)
     nodeset   = html_doc.xpath('//a')
     links = nodeset.map {|element| element["href"]}.compact
-    # it looks like a lot of links are new google search queries
-    # How do we handle those? For now, skipping them
+
+    recommended_search_links = links.map {|all_links| all_links.split(/^\/search\?ie=UTF-8&q=/)[1]}
     raw_query_links = links.map {|all_links| all_links.split(/^\/url\?q=/)[1] }
+
     raw_query_links.each do |link|
-      # remove search links that are searches
+      # TIGHTLY COUPLED TO GOOGLE . FIX THIS
       if !link.nil? && !link.match('google.com')
         # prune tail end metadata google uses
         pruned_link = link.split(/&sa=U&ved=/)[0]
-        only_links.push(pruned_link)
+        direct_links.push(pruned_link)
       end
     end
-    return only_links
+    # puts "recommended_search_links"
+    # puts recommended_search_links
+    return direct_links
   end
 
 end
