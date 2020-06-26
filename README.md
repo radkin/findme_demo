@@ -21,7 +21,7 @@ If you get an error about Gemfile.lock and versions, try this
 
 ## Directions for use
 * use the myPersonal.json template to create initial search criteria
-* run findme.rb and wait for results
+* run `jruby bin/findme.rb` and wait for results
 
 ## Testing
 while in the root directory run
@@ -64,4 +64,4 @@ logical.
 
 ## About findme_demo
 _Author: radkin@github_
-_Version: 0.0.3_
+_Version: 0.0.4_
