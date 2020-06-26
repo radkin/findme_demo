@@ -1,6 +1,7 @@
-class SearchClient
+# frozen_string_literal: true
 
-  require "rest-client"
+class SearchClient
+  require 'rest-client'
 
   attr_accessor :search_engine
 
@@ -9,14 +10,11 @@ class SearchClient
   end
 
   def search
-    if !defined? @search_engine
-      @search_engine = "google"
-    end
+    @search_engine = 'google' unless defined? @search_engine
     url = "https://#{@search_engine}.com/search?q=#{@query}"
     response = RestClient.get(url)
-    return response
+    response
   end
-
 end
 
 # Please note that nokogiri can use the "open" method to GET the above link

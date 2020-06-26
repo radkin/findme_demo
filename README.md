@@ -39,6 +39,14 @@ valid that we can use right now?
 * **threaded test**: basic implementation of threaded rest client GET of all
 google recommended search queries returned from our initial query
 
+## Linting
+rubocop is a solid standalone linter and it is used extensively in this app
+
+```bash
+cd findme_demo
+rubocop
+```
+
 ## Caveats
 The following are out of scope (for now):
 * following google search links that are themselves searches
