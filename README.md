@@ -39,13 +39,10 @@ valid that we can use right now?
 * **threaded test**: basic implementation of threaded rest client GET of all
 google recommended search queries returned from our initial query
 
-## Linting
-rubocop is a solid standalone linter and it is used extensively in this app
+## Linting, code smells and code metrics
+`test/run_all_tests.sh`
+all tools presently in use are listed in this file.
 
-```bash
-cd findme_demo
-rubocop
-```
 
 ## Caveats
 The following are out of scope (for now):

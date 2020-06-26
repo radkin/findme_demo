@@ -13,3 +13,6 @@ bundle exec rubocop
 
 echo "speed optimization suggestsions from fasterer"
 bundle exec fasterer
+
+echo "code smells from reek"
+bundle exec reek .
