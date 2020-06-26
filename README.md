@@ -29,12 +29,15 @@ while in the root directory run
 ```bash
 jruby test/findme_search_test.rb
 jruby test/findme_parse_test.rb
+jruby test/findme_threaded_test.rb
 ```
 
 * **search test**: query construction, reading user provided json file, confirm
 expected search engine APIs work as expected
 * **parse test**: are we getting a list of links that work? Are they something
 valid that we can use right now?
+* **threaded test**: basic implementation of threaded rest client GET of all
+google recommended search queries returned from our initial query
 
 ## Caveats
 The following are out of scope (for now):
