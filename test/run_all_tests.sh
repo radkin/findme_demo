@@ -10,3 +10,6 @@ jruby test/findme_threaded_test.rb
 
 echo "running rubocop standalone linter"
 bundle exec rubocop
+
+echo "speed optimization suggestsions from fasterer"
+bundle exec fasterer
