@@ -4,7 +4,7 @@ require_relative '../lib/user_provided_information'
 require_relative '../lib/search/search_query'
 require_relative '../lib/search/search_client'
 
-class UserProvidedInformationTest < Minitest::Test
+class SearchTest < Minitest::Test
   def test_import_userpi_template
     @testJSON = {
       "firstName"=>"jane",
