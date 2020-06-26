@@ -13,4 +13,4 @@ gem 'rubocop', '0.86.0', require: false
 gem 'minitest-reporters', '1.4.2'
 gem 'fasterer', '0.8.3'
 gem 'reek', '6.0.1'
-
+gem 'rubocop-performance', '1.6.1'
