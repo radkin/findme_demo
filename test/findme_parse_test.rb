@@ -16,10 +16,12 @@ class ParseTest < Minitest::Test
   query_result    = query.search
   pr              = ParseResults.new(query_result.body)
   # class scope for thie re-used hash
-  @@all_links = pr.parse
+  @@all_links = pr.parse_google
 
   # should return a list of web links that nokogiri can parse
   def test_return_direct_links
+    # no empty array
+    assert @@all_links.length > 0
     # no empty values in our array
     assert @@all_links['direct'].map { |link| !link.nil? }
     # no google searches as we want only result links

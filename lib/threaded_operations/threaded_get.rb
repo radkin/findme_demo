@@ -34,12 +34,12 @@ class ThreadedGet
         query_client    = SearchClient.new(query)
         query_result    = query_client.search
         pr              = ParseResults.new(query_result.body)
-        result          = pr.parse
+        result          = pr.parse_google
         all_links.push(result)
         $LOG.debug(result)
       end
     end
     @pool.shutdown
-    all_links
+    return all_links
   end
 end

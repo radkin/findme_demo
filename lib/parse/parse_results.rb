@@ -7,7 +7,7 @@ class ParseResults
     @query_result = query_result
   end
 
-  def parse
+  def parse_google
     all_links = {}
     direct_links = []
     search_queries = []
@@ -34,6 +34,10 @@ class ParseResults
       'direct' => direct_links,
       'search_queries' => search_queries
     }
-    all_links
+    return all_links
   end
+  
+  def parse_bing
+  end
+  
 end

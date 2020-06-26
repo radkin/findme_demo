@@ -41,7 +41,7 @@ class Findme
     # step3
     $LOG.info("parsing query results")
     pr              = ParseResults.new(query_result.body)
-    all_links = pr.parse
+    all_links = pr.parse_google
     queries = all_links['search_queries']
     $LOG.info("running search engine recommended searches")
     # step4

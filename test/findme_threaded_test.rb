@@ -17,7 +17,7 @@ class ThreadTest < Minitest::Test
   query_result    = query.search
   pr              = ParseResults.new(query_result.body)
   # class scope for thie re-used hash
-  @@all_links = pr.parse
+  @@all_links = pr.parse_google
 
   # let's make sure the first result is valid
   def test_threaded_get_requests
