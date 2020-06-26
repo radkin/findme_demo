@@ -14,3 +14,4 @@ gem 'minitest-reporters', '1.4.2'
 gem 'fasterer', '0.8.3'
 gem 'reek', '6.0.1'
 gem 'rubocop-performance', '1.6.1'
+gem 'deep-cover', '1.0.0', group: :test

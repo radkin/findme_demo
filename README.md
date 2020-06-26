@@ -41,7 +41,11 @@ google recommended search queries returned from our initial query
 
 ## Linting, code smells and code metrics
 `test/run_all_tests.sh`
-all tools presently in use are listed in this file.
+all tools presently in use are listed in this file. You can view output
+interactively for everything.
+
+## Code coverage HTML report
+Point your browser at `findme_demo/coverage/index.html`
 
 
 ## Caveats
