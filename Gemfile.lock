@@ -1,7 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ansi (1.5.0)
     ast (2.4.1)
+    builder (3.2.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     http-accept (1.7.0)
@@ -14,6 +16,11 @@ GEM
     mime-types-data (3.2020.0512)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
+    minitest-reporters (1.4.2)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     netrc (0.11.0)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
@@ -54,9 +61,10 @@ PLATFORMS
 DEPENDENCIES
   json (= 2.3.0)
   minitest (= 5.14.1)
+  minitest-reporters (= 1.4.2)
   nokogiri (= 1.10.9)
   rest-client (= 2.1.0)
-  rubocop (~> 0.86.0)
+  rubocop (= 0.86.0)
 
 BUNDLED WITH
    2.1.4

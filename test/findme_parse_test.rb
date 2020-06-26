@@ -2,8 +2,13 @@
 
 # PARSING SEARCH RESULTS TESTS
 require 'minitest/autorun'
+require 'minitest/reporters'
+
+# custom libs
 require_relative '../lib/search/search_client'
 require_relative '../lib/parse/parse_results'
+
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 
 class ParseTest < Minitest::Test
   full_name_query = 'jane+smith'

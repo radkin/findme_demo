@@ -2,9 +2,14 @@
 
 # CONDUCTING SEARCH TESTS
 require 'minitest/autorun'
+require 'minitest/reporters'
+
+# custom libs
 require_relative '../lib/user_provided_information'
 require_relative '../lib/search/search_query'
 require_relative '../lib/search/search_client'
+
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 
 class SearchTest < Minitest::Test
   def test_import_userpi_template
