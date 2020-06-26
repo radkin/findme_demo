@@ -39,6 +39,20 @@ valid that we can use right now?
 * **threaded test**: basic implementation of threaded rest client GET of all
 google recommended search queries returned from our initial query
 
+## Linting, code smells and code metrics
+`test/run_all_tests.sh`
+all tools presently in use are listed in this file. You can view output
+interactively for everything.
+
+### Cyclomatic Complexity (check methods)
+[RuboCop::Cop::Metrics::CyclomaticComplexity](https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/CyclomaticComplexity)
+
+### Assignments, Branches and Conditions metrics (cognitive size)
+[RuboCop::Cop::Metrics::AbcSize](https://www.rubydoc.info/gems/rubocop/0.27.0/RuboCop/Cop/Metrics/AbcSize)
+
+## Code coverage HTML report
+Point your browser at `findme_demo/coverage/index.html`
+
 ## Caveats
 The following are out of scope (for now):
 * following google search links that are themselves searches

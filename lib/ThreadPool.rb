@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # class ThreadPool keeps track of threads so we can keep them to a manageable size
 class ThreadPool
   def initialize
@@ -6,9 +8,10 @@ class ThreadPool
     @pool_mutex = Mutex.new
     @pool_cv = ConditionVariable.new
   end
+
   # def dispatch actually manages our threads so the pool remains max size and no larger. In reality, the pool does get bigger, but it the only active thread will be max_size
   def dispatch(*args)
-    Thread.new(sleep 1) do
+    Thread.new(sleep(1)) do
       # Wait for space in the pool.
       @pool_mutex.synchronize do
         $LOG.debug("Pool is presently #{@pool.size}")
@@ -18,10 +21,10 @@ class ThreadPool
           @pool_cv.wait(@pool_mutex)
         end
       end
-    @pool << Thread.current
-    begin
-    yield(*args)
-      rescue => e
+      @pool << Thread.current
+      begin
+          yield(*args)
+      rescue StandardError => e
         exception(self, e, *args)
       ensure
         @pool_mutex.synchronize do
@@ -30,18 +33,17 @@ class ThreadPool
           # Signal the next waiting thread that there's a space in the pool.
           @pool_cv.signal
         end
-      end
+        end
     end
   end
+
   # def shutdown makes sure all the threads in our pool are done before we complete the loop
   def shutdown
     @pool_mutex.synchronize { @pool_cv.wait(@pool_mutex) until @pool.empty? }
   end
 
-  def exception(thread, exception, *original_args)
+  def exception(thread, exception, *_original_args)
     # Subclass this method to handle an exception within a thread.
     puts "Exception in thread #{thread}: #{exception}"
   end
-
 end
- 
