@@ -11,27 +11,36 @@ require_relative '../lib/parse/parse_results'
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 class ParseTest < Minitest::Test
-  full_name_query = 'jane+smith'
-  query           = SearchClient.new(full_name_query)
-  query_result    = query.search
-  pr              = ParseResults.new(query_result.body)
-  # class scope for thie re-used hash
-  @@all_links = pr.parse_google
-
   # should return a list of web links that nokogiri can parse
   def test_return_direct_links
-    # no empty array
-    assert !@@all_links.empty?
-    # no empty values in our array
-    assert @@all_links['direct'].map { |link| !link.nil? }
-    # no google searches as we want only result links
-    assert @@all_links['direct'].map { |link| !link.match('google.com') }
-    # everything must start with https
-    assert @@all_links['direct'].map { |link| link.match(%r{^https://}) }
+    full_name_query = 'jane+smith'
+    # search_engines = %w[bing yandex yahoo startpage duckduckgo
+    #                     baidu searchencrypt gigablast]
+    search_engines  = ["google"]
+    query           = SearchClient.new(full_name_query)
+    query_result    = query.search
+
+    pr = ParseResults.new(query_result.body)
+
+    search_engines.each do |search_engine|
+      all_links       = []
+      case search_engine
+      when "google"
+        all_links = pr.parse_google
+      when "bing"
+        all_links = pr.parse_bing
+      else
+        raise RuntimeError.new("search engine undefined")
+      end
+      # no empty array
+      assert !all_links.empty?
+      # no empty values in our array
+      assert all_links['direct'].map { |link| !link.nil? }
+      # no google searches as we want only result links
+      assert all_links['direct'].map { |link| !link.match(search_engine) }
+      # everything must start with https
+      assert all_links['direct'].map { |link| link.match(%r{^https://}) }
+    end
   end
 
-  def test_return_search_queries
-    # no empty values in our array
-    assert @@all_links['search_queries'].map { |link| !link.nil? }
-  end
 end

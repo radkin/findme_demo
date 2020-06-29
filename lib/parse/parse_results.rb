@@ -37,5 +37,14 @@ class ParseResults
     all_links
   end
 
-  def parse_bing; end
+  def parse_bing
+    all_links = {}
+    direct_links = []
+    search_queries = []
+    html_doc = Nokogiri::HTML(@query_result)
+    nodeset = html_doc.xpath('//a')
+    links = nodeset.map { |element| element['href'] }.compact
+    return links
+  end
+  
 end
