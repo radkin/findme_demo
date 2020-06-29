@@ -44,7 +44,14 @@ class ParseResults
     html_doc = Nokogiri::HTML(@query_result)
     nodeset = html_doc.xpath('//a')
     links = nodeset.map { |element| element['href'] }.compact
-    return links
+
+    raw_search_queries = links.map { |all_links| all_links.split(/\/search\?q=/)[1] }
+    raw_search_queries.each do |search_query|
+      search_queries.push(search_query) unless search_query.nil?
+    end
+        
+    return search_queries
+  
   end
   
 end

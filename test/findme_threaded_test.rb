@@ -24,12 +24,12 @@ class ThreadTest < Minitest::Test
     pr              = ParseResults.new(query_result.body)
 
     search_engines.each do |search_engine|
-      all_links       = []
+      all_links           = []
       case search_engine
       when "google"
-        all_links = pr.parse_google
+        all_links         = pr.parse_google
       when "bing"
-        all_links = pr.parse_bing
+        all_links         = pr.parse_bing
       else
         raise RuntimeError.new("search engine undefined")
       end
