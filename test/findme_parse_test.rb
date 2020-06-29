@@ -8,7 +8,7 @@ require 'minitest/reporters'
 require_relative '../lib/search/search_client'
 require_relative '../lib/parse/parse_results'
 
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 class ParseTest < Minitest::Test
   full_name_query = 'jane+smith'
@@ -21,7 +21,7 @@ class ParseTest < Minitest::Test
   # should return a list of web links that nokogiri can parse
   def test_return_direct_links
     # no empty array
-    assert @@all_links.length > 0
+    assert !@@all_links.empty?
     # no empty values in our array
     assert @@all_links['direct'].map { |link| !link.nil? }
     # no google searches as we want only result links

@@ -40,6 +40,6 @@ class ThreadedGet
       end
     end
     @pool.shutdown
-    return all_links
+    all_links
   end
 end

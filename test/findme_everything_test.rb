@@ -5,7 +5,7 @@ require 'minitest/reporters'
 
 require_relative '../bin/findme.rb'
 
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 class EverythingTest < Minitest::Test
   # let's make sure the first result is valid

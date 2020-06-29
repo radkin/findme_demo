@@ -34,10 +34,8 @@ class ParseResults
       'direct' => direct_links,
       'search_queries' => search_queries
     }
-    return all_links
+    all_links
   end
-  
-  def parse_bing
-  end
-  
+
+  def parse_bing; end
 end
