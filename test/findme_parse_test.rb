@@ -16,7 +16,7 @@ class ParseTest < Minitest::Test
     full_name_query = 'jane+smith'
     # search_engines = %w[bing yandex yahoo startpage duckduckgo
     #                     baidu searchencrypt gigablast]
-    search_engines  = ["bing"]
+    search_engines  = ["google"]
 
     search_engines.each do |search_engine|
       query               = SearchClient.new(full_name_query)
