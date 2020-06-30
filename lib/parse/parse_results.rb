@@ -49,7 +49,28 @@ class ParseResults
       'search_queries' => search_queries
     }
     all_links
-  
   end
+  
+  def parse_yahoo
+    all_links       = {}
+    direct_links    = []
+    search_queries  = []
+    html_doc        = Nokogiri::HTML(@query_result)
+    nodeset         = html_doc.xpath('//a')
+    links           = nodeset.map { |element| element['href'] }.compact
+    # search links
+    search_queries  = links.map { |all_links| all_links.split(/\/search\?q=/)[1] }.compact
+    # direct links (usually none)
+    links.each do |link|
+      if link.match('https') && !link.match('yahoo.com')
+        direct_links.push(link)
+      end
+    end    
+    all_links = {
+      'direct' => direct_links,
+      'search_queries' => search_queries
+    }
+    all_links
+  end  
   
 end

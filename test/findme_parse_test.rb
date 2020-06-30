@@ -16,7 +16,7 @@ class ParseTest < Minitest::Test
     full_name_query = 'jane+smith'
     # search_engines = %w[bing yandex yahoo startpage duckduckgo
     #                     baidu searchencrypt gigablast]
-    search_engines  = ["bing", "google"]
+    search_engines  = ["yahoo", "bing", "google"]
 
     search_engines.each do |search_engine|
       query               = SearchClient.new(full_name_query)
@@ -29,6 +29,8 @@ class ParseTest < Minitest::Test
         all_links         = pr.parse_google
       when "bing"
         all_links         = pr.parse_bing
+      when "yahoo"
+        all_links         = pr.parse_yahoo
       else
         raise RuntimeError.new("search engine undefined")
       end
@@ -44,7 +46,6 @@ class ParseTest < Minitest::Test
       assert all_links['direct'].map { |link| !link.match(search_engine) }
       # everything must start with https
       assert all_links['direct'].map { |link| link.match(%r{^https://}) }
-
     end
   end
 
