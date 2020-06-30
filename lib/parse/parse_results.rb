@@ -14,16 +14,14 @@ class ParseResults
     html_doc        = Nokogiri::HTML(@query_result)
     nodeset         = html_doc.xpath('//a')
     links           = nodeset.map { |element| element['href'] }.compact
-
     # search links
-    search_queries = links.map { |link| link.split(%r{^/search\?ie=UTF-8&q=})[1] }.compact
+    search_queries  = links.map { |link| link.split(%r{^/search\?ie=UTF-8&q=})[1] }.compact
     # direct links
     links.each do |link|
       pruned_head_link = link.split(%r{^/url\?q=})[1]
       next unless !pruned_head_link.nil? && !pruned_head_link.match('google.com')
       direct_links.push(pruned_head_link.split(/&sa=U&ved=/)[0])
     end
-
     all_links = {
       'direct' => direct_links,
       'search_queries' => search_queries
@@ -32,19 +30,25 @@ class ParseResults
   end
 
   def parse_bing
-    all_links = {}
-    direct_links = []
-    search_queries = []
-    html_doc = Nokogiri::HTML(@query_result)
-    nodeset = html_doc.xpath('//a')
-    links = nodeset.map { |element| element['href'] }.compact
-
-    raw_search_queries = links.map { |all_links| all_links.split(/\/search\?q=/)[1] }
-    raw_search_queries.each do |search_query|
-      search_queries.push(search_query) unless search_query.nil?
-    end
-        
-    return search_queries
+    all_links       = {}
+    direct_links    = []
+    search_queries  = []
+    html_doc        = Nokogiri::HTML(@query_result)
+    nodeset         = html_doc.xpath('//a')
+    links           = nodeset.map { |element| element['href'] }.compact
+    # search links
+    search_queries  = links.map { |all_links| all_links.split(/\/search\?q=/)[1] }.compact
+    # direct links
+    links.each do |link|
+      if link.match('https') && !link.match('go.microsoft.com')
+        direct_links.push(link)
+      end
+    end    
+    all_links = {
+      'direct' => direct_links,
+      'search_queries' => search_queries
+    }
+    all_links
   
   end
   

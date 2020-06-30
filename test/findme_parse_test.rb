@@ -16,7 +16,7 @@ class ParseTest < Minitest::Test
     full_name_query = 'jane+smith'
     # search_engines = %w[bing yandex yahoo startpage duckduckgo
     #                     baidu searchencrypt gigablast]
-    search_engines  = ["google"]
+    search_engines  = ["bing", "google"]
 
     search_engines.each do |search_engine|
       query               = SearchClient.new(full_name_query)
@@ -34,9 +34,8 @@ class ParseTest < Minitest::Test
       end
 
       # FOR NOW WE LOOK AT RESPONSE FROM THE METHOD PROGRESS
-      puts all_links
+      # puts all_links
 
-=begin
       # no empty array
       assert !all_links.empty?
       # no empty values in our array
@@ -45,7 +44,6 @@ class ParseTest < Minitest::Test
       assert all_links['direct'].map { |link| !link.match(search_engine) }
       # everything must start with https
       assert all_links['direct'].map { |link| link.match(%r{^https://}) }
-=end
 
     end
   end
