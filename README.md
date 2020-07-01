@@ -64,4 +64,4 @@ logical.
 
 ## About findme_demo
 _Author: radkin@github_
-_Version: 0.0.4_
+_Version: 0.0.5_
