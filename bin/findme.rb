@@ -28,7 +28,7 @@ class Findme
   # $LOG.level  = Logger::ERROR
 
   def main
-    # step1
+    ### step1
     $LOG.info('gathering user provided information')
     @user_pi = UserProvidedInformation.new.import_PI
     type = 'full_name_query'
@@ -38,13 +38,22 @@ class Findme
     $LOG.info('running query')
     query           = SearchClient.new(full_name_query)
     query_result    = query.search
-    # step3
+    ### step3
     $LOG.info('parsing query results')
-    pr = ParseResults.new(query_result.body)
-    all_links = pr.parse_google
-    queries = all_links['search_queries']
+    # common parser processing
+    parser              = Parser.new(query_result.body)
+    links               = parser.gather_raw_links
+    # using google as our search engine
+    google         = Google.new(links)
+    direct_links   = google.gather_direct_links
+    search_queries = google.gather_search_queries
+    all_links = {
+      'direct'          => direct_links,
+      'search_queries'  => search_queries
+    }
+    ### step4
     $LOG.info('running search engine recommended searches')
-    # step4
+    queries = all_links['search_queries']
     threader = ThreadedGet.new(queries)
     threader.go
   end
