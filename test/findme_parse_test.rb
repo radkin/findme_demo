@@ -16,7 +16,7 @@ class ParseTest < Minitest::Test
     full_name_query = 'jane+smith'
     # search_engines = %w[bing yandex yahoo startpage duckduckgo
     #                     baidu searchencrypt gigablast]
-    search_engines  = ["bing", "google"]
+    search_engines  = ["startpage", "bing", "google"]
 
     search_engines.each do |search_engine|
       query               = SearchClient.new(full_name_query)
@@ -29,8 +29,12 @@ class ParseTest < Minitest::Test
         all_links         = pr.parse_google
       when "bing"
         all_links         = pr.parse_bing
-      when "yahoo"
-        all_links         = pr.parse_yahoo
+      when "startpage"
+        all_links         = pr.parse_startpage
+      # SKIPPING YAHOO. XPATH/CSS nokogiri can of worms
+      # when "yahoo"
+
+      #   all_links         = pr.parse_yahoo
       else
         raise RuntimeError.new("search engine undefined")
       end

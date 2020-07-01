@@ -48,7 +48,7 @@ class SearchTest < Minitest::Test
 
   # other search engines
   def test_run_non_default_search_engine
-    search_engines = %w[bing yandex yahoo startpage duckduckgo
+    search_engines = %w[bing startpage duckduckgo
                         baidu searchencrypt gigablast]
     full_name_query = 'jane+smith'
     search_engines.each do |engine|

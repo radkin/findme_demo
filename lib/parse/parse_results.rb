@@ -37,40 +37,47 @@ class ParseResults
     nodeset         = html_doc.xpath('//a')
     links           = nodeset.map { |element| element['href'] }.compact
     # search links
-    search_queries  = links.map { |all_links| all_links.split(/\/search\?q=/)[1] }.compact
+    search_queries  = links.map { |link| link.split(/\/search\?q=/)[1] }.compact
     # direct links
     links.each do |link|
       if link.match('https') && !link.match('go.microsoft.com')
         direct_links.push(link)
       end
-    end    
+    end
     all_links = {
       'direct' => direct_links,
       'search_queries' => search_queries
     }
     all_links
   end
-  
-  def parse_yahoo
+
+  def parse_startpage
     all_links       = {}
     direct_links    = []
-    search_queries  = []
     html_doc        = Nokogiri::HTML(@query_result)
     nodeset         = html_doc.xpath('//a')
     links           = nodeset.map { |element| element['href'] }.compact
-    # search links
-    search_queries  = links.map { |all_links| all_links.split(/\/search\?q=/)[1] }.compact
-    # direct links (usually none)
+
+    # startpage has no search links
+    search_queries = []
+
+    # filter these from list of direct links
+    startpage_filters = ['www.startpage.com', 'support.startpage.com',
+      'www.startmail.com']
+    sf = Regexp.union(startpage_filters)
+
+    # direct links
     links.each do |link|
-      if link.match('https') && !link.match('yahoo.com')
+      if link.match('https') && !link.match(sf)
         direct_links.push(link)
       end
-    end    
+    end
+
     all_links = {
       'direct' => direct_links,
       'search_queries' => search_queries
     }
     all_links
-  end  
-  
+  end
+
 end
