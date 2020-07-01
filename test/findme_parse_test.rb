@@ -14,8 +14,6 @@ class ParseTest < Minitest::Test
   # should return a list of web links that nokogiri can parse
   def test_return_direct_links
     full_name_query = 'jane+smith'
-    # search_engines = %w[bing yandex yahoo startpage duckduckgo
-    #                     baidu searchencrypt gigablast]
     search_engines  = %w[startpage bing google]
 
     search_engines.each do |search_engine|
@@ -24,6 +22,7 @@ class ParseTest < Minitest::Test
       query_result        = query.search
       pr                  = ParseResults.new(query_result.body)
       all_links           = []
+      
       case search_engine
       when 'google'
         all_links = pr.parse_google
@@ -31,16 +30,10 @@ class ParseTest < Minitest::Test
         all_links = pr.parse_bing
       when 'startpage'
         all_links = pr.parse_startpage
-      # SKIPPING YAHOO. XPATH/CSS nokogiri can of worms
-      # when "yahoo"
-
-      #   all_links         = pr.parse_yahoo
+      # SKIPPING other search engines. XPATH/CSS nokogiri can of worms
       else
         raise 'search engine undefined'
       end
-
-      # FOR NOW WE LOOK AT RESPONSE FROM THE METHOD PROGRESS
-      # puts all_links
 
       # no empty array
       assert !all_links.empty?
