@@ -5,14 +5,14 @@ echo "Example: cd findme_demo; test/run_all_tests.sh"
 
 echo "================== running unit tests =================="
 
-echo "---- findme_search_test ----"
-jruby test/findme_search_test.rb
+echo "---- search_test ----"
+jruby test/search_test.rb
 
-echo "---- findme_parse_test ----"
-jruby test/findme_parse_test.rb
+echo "---- search_parse_all_engines_test ----"
+jruby test/search_parse_all_engines_test.rb
 
-echo "---- findme_threaded_test ----"
-jruby test/findme_threaded_test.rb
+echo "---- threaded_test ----"
+jruby test/threaded_test.rb
 
 echo "running rubocop standalone linter"
 bundle exec rubocop

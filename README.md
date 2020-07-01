@@ -27,15 +27,14 @@ If you get an error about Gemfile.lock and versions, try this
 while in the root directory run
 
 ```bash
-jruby test/findme_search_test.rb
-jruby test/findme_parse_test.rb
-jruby test/findme_threaded_test.rb
+jruby test/search_test.rb
+jruby test/search_parse_all_engines_test.rb
+jruby test/threaded_test.rb
 ```
 
 * **search test**: query construction, reading user provided json file, confirm
 expected search engine APIs work as expected
-* **parse test**: are we getting a list of links that work? Are they something
-valid that we can use right now?
+* **search parse all engines test**: are we getting a list of links that work? Are they something valid that we can use right now? Are we getting both direct and search query links?
 * **threaded test**: basic implementation of threaded rest client GET of all
 google recommended search queries returned from our initial query
 
@@ -60,8 +59,9 @@ The following are out of scope (for now):
 * the end goal may very well be publishing results to a REST API which is
 logical.
 * certainly this could dovetail nicely with a front-end UI that displays results.
+* some search engines have complex hrefs that are harder to find with nokogiri. In particular Yahoo has many layers between search results and the body.
 
 
 ## About findme_demo
 _Author: radkin@github_
-_Version: 0.0.4_
+_Version: 0.0.5_

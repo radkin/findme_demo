@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# simple set up for our search client using rest
 class SearchClient
   require 'rest-client'
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# create search queries we can provide to the client to gather results
 class SearchQuery
   def initialize(user_pi, type)
     @user_pi  = user_pi

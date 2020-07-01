@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# encapsulate search and parse into a threaded operation that fits in our pool
 class ThreadedGet
-  require_relative '../ThreadPool'
+  require_relative '../thread_pool'
   require 'logger'
 
   require_relative '../search/search_client'
@@ -12,11 +13,11 @@ class ThreadedGet
   end
 
   # Logger#debug, Logger#info, Logger#warn, Logger#error, and Logger#fatal
-  wrkDir = '/var/log/findme'
+  work_dir = '/var/log/findme'
   begin
-    $LOG = Logger.new("#{wrkDir}/findme.log", 10, 1_024_000)
-  rescue Exception => e
-    puts "unable to write to #{wrkDir}/findme.log ... writing to stdout"
+    $LOG = Logger.new("#{work_dir}/findme.log", 10, 1_024_000)
+  rescue StandardError => e
+    puts "unable to write to #{work_dir}/findme.log ... writing to stdout"
     $LOG = Logger.new($stderr)
   end
 
