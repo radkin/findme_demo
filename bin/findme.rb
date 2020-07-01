@@ -11,13 +11,14 @@ require_relative '../lib/threaded_operations/threaded_get'
 
 require 'logger'
 
+# Find web results that are an invasion of your privacy
 class Findme
   # Logger#debug, Logger#info, Logger#warn, Logger#error, and Logger#fatal
-  wrkDir = '/var/log/findme'
+  work_dir = '/var/log/findme'
   begin
-    $LOG = Logger.new("#{wrkDir}/findme.log", 10, 1_024_000)
-  rescue Exception => e
-    puts "unable to write to #{wrkDir}/findme.log ... writing to stdout"
+    $LOG = Logger.new("#{work_dir}/findme.log", 10, 1_024_000)
+  rescue StandardError => e
+    puts "unable to write to #{work_dir}/findme.log ... writing to stdout"
     $LOG = Logger.new($stderr)
   end
 
@@ -45,7 +46,7 @@ class Findme
     $LOG.info('running search engine recommended searches')
     # step4
     threader = ThreadedGet.new(queries)
-    results = threader.go
+    threader.go
   end
 end
 

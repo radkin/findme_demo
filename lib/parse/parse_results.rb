@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# organize results from our search engines into direct links and search queries
 class ParseResults
   require 'nokogiri'
 
@@ -20,6 +21,7 @@ class ParseResults
     links.each do |link|
       pruned_head_link = link.split(%r{^/url\?q=})[1]
       next unless !pruned_head_link.nil? && !pruned_head_link.match('google.com')
+
       direct_links.push(pruned_head_link.split(/&sa=U&ved=/)[0])
     end
     all_links = {
@@ -37,12 +39,10 @@ class ParseResults
     nodeset         = html_doc.xpath('//a')
     links           = nodeset.map { |element| element['href'] }.compact
     # search links
-    search_queries  = links.map { |link| link.split(/\/search\?q=/)[1] }.compact
+    search_queries  = links.map { |link| link.split(%r{/search\?q=})[1] }.compact
     # direct links
     links.each do |link|
-      if link.match('https') && !link.match('go.microsoft.com')
-        direct_links.push(link)
-      end
+      direct_links.push(link) if link.match('https') && !link.match('go.microsoft.com')
     end
     all_links = {
       'direct' => direct_links,
@@ -63,14 +63,12 @@ class ParseResults
 
     # filter these from list of direct links
     startpage_filters = ['www.startpage.com', 'support.startpage.com',
-      'www.startmail.com']
+                         'www.startmail.com']
     sf = Regexp.union(startpage_filters)
 
     # direct links
     links.each do |link|
-      if link.match('https') && !link.match(sf)
-        direct_links.push(link)
-      end
+      direct_links.push(link) if link.match('https') && !link.match(sf)
     end
 
     all_links = {
@@ -79,5 +77,4 @@ class ParseResults
     }
     all_links
   end
-
 end

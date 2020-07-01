@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# read user provided information from a file for our searches
 class UserProvidedInformation
   require 'json'
 

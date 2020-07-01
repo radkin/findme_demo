@@ -19,24 +19,24 @@ class ThreadTest < Minitest::Test
     #                     baidu searchencrypt gigablast]
 
     # no search_links STARTPAGE , so not testing it
-    search_engines  = ["bing", "google"]
+    search_engines  = %w[bing google]
     query           = SearchClient.new(full_name_query)
     query_result    = query.search
 
-    pr              = ParseResults.new(query_result.body)
+    pr = ParseResults.new(query_result.body)
 
     search_engines.each do |search_engine|
       puts "testing #{search_engine}"
-      all_links           = []
+      all_links = []
       case search_engine
-      when "google"
-        all_links         = pr.parse_google
-      when "bing"
-        all_links         = pr.parse_bing
-      when "startpage"
-        all_links         = pr.parse_startpage
+      when 'google'
+        all_links = pr.parse_google
+      when 'bing'
+        all_links = pr.parse_bing
+      when 'startpage'
+        all_links = pr.parse_startpage
       else
-        raise RuntimeError.new("search engine undefined")
+        raise 'search engine undefined'
       end
       # startpage has no search links
       queries = all_links['search_queries']
