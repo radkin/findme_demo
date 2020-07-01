@@ -9,9 +9,7 @@ class ParseResults
   end
 
   def parse_google
-    all_links       = {}
     direct_links    = []
-    search_queries  = []
     html_doc        = Nokogiri::HTML(@query_result)
     nodeset         = html_doc.xpath('//a')
     links           = nodeset.map { |element| element['href'] }.compact
@@ -32,9 +30,7 @@ class ParseResults
   end
 
   def parse_bing
-    all_links       = {}
     direct_links    = []
-    search_queries  = []
     html_doc        = Nokogiri::HTML(@query_result)
     nodeset         = html_doc.xpath('//a')
     links           = nodeset.map { |element| element['href'] }.compact
@@ -52,7 +48,6 @@ class ParseResults
   end
 
   def parse_startpage
-    all_links       = {}
     direct_links    = []
     html_doc        = Nokogiri::HTML(@query_result)
     nodeset         = html_doc.xpath('//a')

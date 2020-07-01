@@ -16,7 +16,7 @@ class ThreadedGet
   work_dir = '/var/log/findme'
   begin
     $LOG = Logger.new("#{work_dir}/findme.log", 10, 1_024_000)
-  rescue Exception => e
+  rescue StandardError => e
     puts "unable to write to #{work_dir}/findme.log ... writing to stdout"
     $LOG = Logger.new($stderr)
   end
