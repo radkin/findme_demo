@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 # encapsulate search and parse into a threaded operation that fits in our pool
-class ThreadedGet
+class ThreadedGetParse
   require_relative '../thread_pool'
   require 'logger'
 
   require_relative '../search/search_client'
+  require_relative '../all_links_producer'
 
   def initialize(query, search_engines)
     @query            = query
@@ -27,7 +28,7 @@ class ThreadedGet
   # $LOG.level  = Logger::ERROR
 
   def go
-    multi_search_engine_query_results = []
+    multi_query_results = {}
     @pool = ThreadPool.new
     @search_engines.each do |search_engine|
       @pool.dispatch do
@@ -36,12 +37,17 @@ class ThreadedGet
         query_client                = SearchClient.new(@query)
         query_client.search_engine  = search_engine
         query_result                = query_client.search
-        multi_search_engine_query_results.push(query_result)
         $LOG.debug('----------- query result ------------')
         $LOG.debug(query_result)
+        # parse according to each search engine's specific requirements
+        producer = AllLinksProducer.new(query_result, search_engine)
+        all_links = producer.supply
+        $LOG.debug('----------- parse result ------------')
+        $LOG.debug(all_links)
+        multi_query_results["#{search_engine}"] = all_links
       end
     end
     @pool.shutdown
-    multi_search_engine_query_results
+    multi_query_results
   end
 end
