@@ -1,8 +1,11 @@
+require_relative '../parser'
+
 # google specific search engine parsing attributes and methods
 class Google
 
-  def initialize(links)
-    @links = links
+  def initialize(query_result)
+    @parser         = Parser.new(query_result)
+    @query_result   = query_result
   end
 
   def gather_direct_links
@@ -20,4 +23,14 @@ class Google
     return @links.map { |link| link.split(%r{^/search\?ie=UTF-8&q=})[1] }.compact
   end
 
+  def gather_all_links
+    @links          = @parser.gather_raw_links
+    direct_links    = gather_direct_links
+    search_queries  = gather_search_queries
+    all_links       = {
+      'direct'          => direct_links,
+      'search_queries'  => search_queries
+    }
+    all_links
+  end
 end

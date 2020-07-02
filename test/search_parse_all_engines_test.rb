@@ -9,24 +9,19 @@ require_relative '../lib/search/search_client'
 require_relative '../lib/parse/google'
 require_relative '../lib/parse/bing'
 require_relative '../lib/parse/startpage'
-require_relative '../lib/parser'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 class SearchParseAllEngines < Minitest::Test
   # should return direct links and additional search query links
   def test_return_all_links_object
-    full_name_query     = 'jane+smith'
-    search_engines      = %w[startpage bing google]
-
+    full_name_query       = 'jane+smith'
+    search_engines        = %w[startpage bing google]
     search_engines.each do |search_engine|
       # rest client initial query
       query               = SearchClient.new(full_name_query)
       query.search_engine = search_engine
       query_result        = query.search
-      # nokogiri HTML processing
-      parser              = Parser.new(query_result.body)
-      links               = parser.gather_raw_links
 
       # common variables
       direct_links = []
@@ -34,26 +29,18 @@ class SearchParseAllEngines < Minitest::Test
 
       case search_engine
       when 'google'
-        google         = Google.new(links)
-        direct_links   = google.gather_direct_links
-        search_queries = google.gather_search_queries
+        google         = Google.new(query_result)
+        all_links      = google.gather_all_links
       when 'bing'
-        bing           = Bing.new(links)
-        direct_links   = bing.gather_direct_links
-        search_queries = bing.gather_search_queries
+        bing           = Bing.new(query_result)
+        all_links      = bing.gather_all_links
       when 'startpage'
-        startpage      = Startpage.new(links)
-        direct_links   = startpage.gather_direct_links
-        search_queries = []
+        startpage      = Startpage.new(query_result)
+        all_links      = startpage.gather_all_links
       # SKIPPING other search engines. XPATH/CSS nokogiri can of worms
       else
         raise 'search engine undefined'
       end
-
-      all_links = {
-        'direct'          => direct_links,
-        'search_queries'  => search_queries
-      }
 
       # no empty array
       assert !all_links.empty?
