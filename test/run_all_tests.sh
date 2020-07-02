@@ -14,6 +14,9 @@ jruby test/search_parse_all_engines_test.rb
 echo "---- threaded_test ----"
 jruby test/thread_test_search_engines_rest.rb
 
+echo "end to end test"
+jruby test/everything_test.rb
+
 echo "running rubocop standalone linter"
 bundle exec rubocop
 

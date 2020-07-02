@@ -30,6 +30,7 @@ while in the root directory run
 jruby test/search_test.rb
 jruby test/search_parse_all_engines_test.rb
 jruby test/threaded_test_search_engines_rest.rb
+jruby test/everything_test.rb
 ```
 
 * **search test**: query construction, reading user provided json file, confirm
@@ -41,6 +42,8 @@ expected search engine APIs work as expected
 * **thread search engines rest test**: basic implementation of threaded rest client
   - GET search query result
   - parse query result
+* **everything test**: end to end test
+
 
 
 ## Linting, code smells and code metrics
