@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # startpage specific search engine parsing attributes and methods
 class Startpage
-
   def initialize(query_result)
     @parser         = Parser.new(query_result)
     @query_result   = query_result
@@ -24,10 +25,9 @@ class Startpage
     direct_links    = gather_direct_links
     search_queries  = []
     all_links       = {
-      'direct'          => direct_links,
-      'search_queries'  => search_queries
+      'direct' => direct_links,
+      'search_queries' => search_queries
     }
     all_links
   end
-
 end

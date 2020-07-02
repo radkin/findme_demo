@@ -24,7 +24,7 @@ class ThreadedGetParse
 
   # $LOG       = Logger.new($stderr)
   # $LOG.level = Logger::DEBUG
-  $LOG.level  = Logger::INFO
+  $LOG.level = Logger::INFO
   # $LOG.level  = Logger::ERROR
 
   def go
@@ -44,7 +44,7 @@ class ThreadedGetParse
         all_links = producer.supply
         $LOG.info('----------- parse result ------------')
         $LOG.info(all_links)
-        multi_query_results["#{search_engine}"] = all_links
+        multi_query_results[search_engine.to_s] = all_links
       end
     end
     @pool.shutdown

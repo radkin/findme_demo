@@ -17,7 +17,7 @@ class ThreadTestSearchEnginesRest < Minitest::Test
     threaded_get = ThreadedGetParse.new(full_name_query, search_engines)
     multi_query_results = threaded_get.go
     # these are GET requests and fully parsed links
-    one_result =  multi_query_results[search_engines[0]]
+    one_result = multi_query_results[search_engines[0]]
     assert one_result.length >= 1
     # should return results from google direct links
     assert one_result['direct'].length >= 1

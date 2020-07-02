@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # bing specific search engine parsing attributes and methods
 class Bing
-
   def initialize(query_result)
     @parser         = Parser.new(query_result)
     @query_result   = query_result
@@ -15,7 +16,7 @@ class Bing
   end
 
   def gather_search_queries
-    return @links.map { |link| link.split(%r{/search\?q=})[1] }.compact
+    @links.map { |link| link.split(%r{/search\?q=})[1] }.compact
   end
 
   def gather_all_links
@@ -23,10 +24,9 @@ class Bing
     direct_links    = gather_direct_links
     search_queries  = gather_search_queries
     all_links       = {
-      'direct'          => direct_links,
-      'search_queries'  => search_queries
+      'direct' => direct_links,
+      'search_queries' => search_queries
     }
     all_links
   end
-
 end

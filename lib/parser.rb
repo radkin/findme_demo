@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # superclass of common search engine attributes
 class Parser
   require 'nokogiri'
@@ -13,5 +15,4 @@ class Parser
     links           = nodeset.map { |element| element['href'] }.compact
     links
   end
-
 end

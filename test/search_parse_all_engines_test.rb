@@ -34,7 +34,6 @@ class SearchParseAllEngines < Minitest::Test
       assert all_links['direct'].map { |link| !link.match(search_engine) }
       # everything must start with https
       assert all_links['direct'].map { |link| link.match(%r{^https://}) }
-
     end # search engine loop
   end # test definition
 end # test class

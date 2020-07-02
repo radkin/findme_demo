@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require_relative '../lib/parse/google'
 require_relative '../lib/parse/bing'
 require_relative '../lib/parse/startpage'
 
 # abstract away how we are producing all_links
 class AllLinksProducer
-
   def initialize(query_result, search_engine)
     @query_result   = query_result
     @search_engine  = search_engine
@@ -28,5 +29,4 @@ class AllLinksProducer
     end
     all_links
   end
-
 end
