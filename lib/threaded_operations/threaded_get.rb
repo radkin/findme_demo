@@ -6,10 +6,10 @@ class ThreadedGet
   require 'logger'
 
   require_relative '../search/search_client'
-  require_relative '../parse/parse_results'
 
-  def initialize(queries)
-    @queries = queries
+  def initialize(query, search_engines)
+    @query            = query
+    @search_engines   = search_engines
   end
 
   # Logger#debug, Logger#info, Logger#warn, Logger#error, and Logger#fatal
@@ -27,20 +27,21 @@ class ThreadedGet
   # $LOG.level  = Logger::ERROR
 
   def go
-    all_links = []
+    multi_search_engine_query_results = []
     @pool = ThreadPool.new
-    @queries.each do |query|
+    @search_engines.each do |search_engine|
       @pool.dispatch do
-        $LOG.debug("running query #{query}")
-        query_client    = SearchClient.new(query)
-        query_result    = query_client.search
-        pr              = ParseResults.new(query_result.body)
-        result          = pr.parse_google
-        all_links.push(result)
-        $LOG.debug(result)
+        $LOG.debug("search engine is #{search_engine}")
+        $LOG.debug("running query: #{@query}")
+        query_client                = SearchClient.new(@query)
+        query_client.search_engine  = search_engine
+        query_result                = query_client.search
+        multi_search_engine_query_results.push(query_result)
+        $LOG.debug('----------- query result ------------')
+        $LOG.debug(query_result)
       end
     end
     @pool.shutdown
-    all_links
+    multi_search_engine_query_results
   end
 end

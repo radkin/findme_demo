@@ -6,9 +6,7 @@ require 'minitest/reporters'
 
 # custom libs
 require_relative '../lib/search/search_client'
-require_relative '../lib/parse/google'
-require_relative '../lib/parse/bing'
-require_relative '../lib/parse/startpage'
+require_relative '../lib/all_links_producer'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
@@ -18,29 +16,15 @@ class SearchParseAllEngines < Minitest::Test
     full_name_query       = 'jane+smith'
     search_engines        = %w[startpage bing google]
     search_engines.each do |search_engine|
+      # reset the value each time we run a new search engine
+      all_links           = {}
       # rest client initial query
       query               = SearchClient.new(full_name_query)
       query.search_engine = search_engine
       query_result        = query.search
-
-      # common variables
-      direct_links = []
-      search_queries = []
-
-      case search_engine
-      when 'google'
-        google         = Google.new(query_result)
-        all_links      = google.gather_all_links
-      when 'bing'
-        bing           = Bing.new(query_result)
-        all_links      = bing.gather_all_links
-      when 'startpage'
-        startpage      = Startpage.new(query_result)
-        all_links      = startpage.gather_all_links
-      # SKIPPING other search engines. XPATH/CSS nokogiri can of worms
-      else
-        raise 'search engine undefined'
-      end
+      # parse according to each search engine's specific requirements
+      producer = AllLinksProducer.new(query_result, search_engine)
+      all_links = producer.supply
 
       # no empty array
       assert !all_links.empty?
