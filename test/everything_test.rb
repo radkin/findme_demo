@@ -7,11 +7,14 @@ require_relative '../bin/findme.rb'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
+# end to end test
 class EverythingTest < Minitest::Test
   # let's make sure the first result is valid
   def test_findme_binary
     findme = Findme.new
     results = findme.main
-    assert results[0]['direct'].length >= 1
+    results.each do |key, value|
+      assert value.length >= 1
+    end
   end
 end
