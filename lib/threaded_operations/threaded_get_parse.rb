@@ -23,8 +23,8 @@ class ThreadedGetParse
   end
 
   # $LOG       = Logger.new($stderr)
-  $LOG.level = Logger::DEBUG
-  # $LOG.level  = Logger::INFO
+  # $LOG.level = Logger::DEBUG
+  $LOG.level  = Logger::INFO
   # $LOG.level  = Logger::ERROR
 
   def go
@@ -42,8 +42,8 @@ class ThreadedGetParse
         # parse according to each search engine's specific requirements
         producer = AllLinksProducer.new(query_result, search_engine)
         all_links = producer.supply
-        $LOG.debug('----------- parse result ------------')
-        $LOG.debug(all_links)
+        $LOG.info('----------- parse result ------------')
+        $LOG.info(all_links)
         multi_query_results["#{search_engine}"] = all_links
       end
     end

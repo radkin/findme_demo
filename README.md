@@ -29,14 +29,19 @@ while in the root directory run
 ```bash
 jruby test/search_test.rb
 jruby test/search_parse_all_engines_test.rb
-jruby test/threaded_test.rb
+jruby test/threaded_test_search_engines_rest.rb
 ```
 
 * **search test**: query construction, reading user provided json file, confirm
 expected search engine APIs work as expected
-* **search parse all engines test**: are we getting a list of links that work? Are they something valid that we can use right now? Are we getting both direct and search query links?
-* **threaded test**: basic implementation of threaded rest client GET of all
-google recommended search queries returned from our initial query
+* **search parse all engines test**:
+  - are we getting a list of links that work?
+  - Are they something valid that we can use right now?
+  - Are we getting both direct and search query links?
+* **thread search engines rest test**: basic implementation of threaded rest client
+  - GET search query result
+  - parse query result
+
 
 ## Linting, code smells and code metrics
 `test/run_all_tests.sh`
@@ -64,4 +69,4 @@ logical.
 
 ## About findme_demo
 _Author: radkin@github_
-_Version: 0.0.5_
+_Version: 0.0.6_

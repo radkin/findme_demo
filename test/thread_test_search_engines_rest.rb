@@ -20,6 +20,8 @@ class ThreadTestSearchEnginesRest < Minitest::Test
     one_result =  multi_query_results[search_engines[0]]
     assert one_result.length >= 1
     # should return results from google direct links
-    assert one_result['direct'].length >=1
+    assert one_result['direct'].length >= 1
+    # should return a hash that uses a search engine for a key
+    assert multi_query_results['bing'].length >= 1
   end
 end
