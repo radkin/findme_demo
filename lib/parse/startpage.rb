@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../parser'
+
 # startpage specific search engine parsing attributes and methods
 class Startpage
   def initialize(query_result)
