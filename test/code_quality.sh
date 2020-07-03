@@ -13,6 +13,3 @@ bundle exec fasterer
 
 echo "code smells from reek"
 bundle exec reek .
-
-echo "generate code coverage html"
-bundle exec deep-cover clone command to run test
