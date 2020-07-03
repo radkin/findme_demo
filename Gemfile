@@ -5,7 +5,6 @@
 # IE "I don't trust gem maintainers"
 source 'https://rubygems.org'
 
-gem 'deep-cover', '1.0.0', group: :test
 gem 'fasterer', '0.8.3'
 gem 'json', '2.3.0'
 gem 'minitest', '5.14.1'
