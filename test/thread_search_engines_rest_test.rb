@@ -9,7 +9,7 @@ require_relative '../lib/threaded_operations/threaded_get_parse'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
-class ThreadTestSearchEnginesRest < Minitest::Test
+class ThreadSearchEnginesRestTest < Minitest::Test
   # let's make sure the first result is valid
   def test_threaded_get_requests
     full_name_query = 'jane+smith'

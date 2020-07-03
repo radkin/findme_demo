@@ -15,7 +15,7 @@ echo "---- producer role suite of tests ----"
 bash test/run_producer_role_tests.sh
 
 echo "---- threaded_test ----"
-jruby test/thread_test_search_engines_rest.rb
+jruby test/thread_search_engines_rest_test.rb
 
 echo "end to end test"
 jruby test/everything_test.rb
