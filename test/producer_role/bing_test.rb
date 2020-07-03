@@ -1,7 +1,10 @@
 require 'minitest/autorun'
+require 'minitest/reporters'
 
 require_relative './search_engine_interface_test'
 require_relative '../../lib/parse/bing'
+
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 @query_result = ""
 
