@@ -13,9 +13,9 @@ class SearchQueryTest < Minitest::Test
   def setup
     user_pi = {
       "firstName" => "jane",
-      "lastName" => "doe"
+      "lastName"  => "doe"
     }
-    type = "full_name_query"
+    type          = "full_name_query"
     @search_query = SearchQuery.new(user_pi, type)
   end
 

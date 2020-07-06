@@ -11,9 +11,9 @@ class SearchClient
   end
 
   def search
-    @search_engine = 'google' unless defined? @search_engine
-    url = "https://#{@search_engine}.com/search?q=#{@query}"
-    response = RestClient.get(url)
+    @search_engine  = 'google' unless defined? @search_engine
+    url             = "https://#{@search_engine}.com/search?q=#{@query}"
+    response        = RestClient.get(url)
     response
   end
 end

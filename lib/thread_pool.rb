@@ -3,10 +3,10 @@
 # class ThreadPool keeps track of threads so we can keep them to a manageable size
 class ThreadPool
   def initialize
-    @pool = []
-    @max_size = 18
+    @pool       = []
+    @max_size   = 18
     @pool_mutex = Mutex.new
-    @pool_cv = ConditionVariable.new
+    @pool_cv    = ConditionVariable.new
   end
 
   # def dispatch actually manages our threads so the pool remains max size and no larger. In reality, the pool does get bigger, but it the only active thread will be max_size

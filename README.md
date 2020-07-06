@@ -24,12 +24,30 @@ If you get an error about Gemfile.lock and versions, try this
 * run `jruby bin/findme.rb` and wait for results
 
 ## Testing
-while in the root directory run
+There are two testing suites; by_library and producer_role.
+
+**by_library**
+```bash
+jruby test/by_library/bing_parser_test.rb
+jruby test/by_library/google_parser_test.rb
+jruby test/by_library/startpage_parser_test.rb
+```
+
+**producer_role**
+```bash
+jruby test/producer_role/bing_test.rb
+jruby test/producer_role/google_test.rb
+jruby test/producer_role/startpage_parser_test.rb
+```
+
+**functional tests**
+All others are functional tests that can run independently and while in the root directory you can run them like this:
 
 ```bash
 jruby test/search_test.rb
 jruby test/search_parse_all_engines_test.rb
 jruby test/threaded_test_search_engines_rest.rb
+
 jruby test/everything_test.rb
 ```
 
@@ -72,4 +90,4 @@ logical.
 
 ## About findme_demo
 _Author: radkin@github_
-_Version: 0.0.6_
+_Version: 0.0.7_
