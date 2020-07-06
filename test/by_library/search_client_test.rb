@@ -17,5 +17,5 @@ class SearchClientTest < Minitest::Test
   def test_search
     assert_equal mock_html, @search_client.search
   end
-  
+
 end
