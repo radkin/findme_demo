@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../parser'
+
 # bing specific search engine parsing attributes and methods
 class Bing
   def initialize(query_result)

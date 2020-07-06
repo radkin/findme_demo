@@ -7,8 +7,8 @@ class UserProvidedInformation
   def initialize; end
 
   def import_PI
-    file = File.read('./config/user_pi.json')
-    @user_pi = JSON.parse(file)
+    file      = File.read('./config/user_pi.json')
+    @user_pi  = JSON.parse(file)
     @user_pi
   end
 end
