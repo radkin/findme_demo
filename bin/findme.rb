@@ -1,11 +1,13 @@
 #!/usr/bin/env jruby
 # frozen_string_literal: true
 
+require 'logger'
+
+# custom libs
 require_relative '../lib/user_provided_information'
 require_relative '../lib/search/search_query'
 require_relative '../lib/threaded_operations/threaded_get_parse'
-
-require 'logger'
+require_relative '../lib/common'
 
 # Find web results that are an invasion of your privacy
 class Findme
@@ -26,14 +28,19 @@ class Findme
   def main
     ### step1
     $LOG.info('gathering user provided information')
-    @user_pi = UserProvidedInformation.new.import_PI
-    type = 'full_name_query'
-    search_query = SearchQuery.new(@user_pi, type)
-    full_name_query = search_query.construct
+    @user_pi            = UserProvidedInformation.new.import_PI
+    type                = 'full_name_query'
+    search_query        = SearchQuery.new(@user_pi, type)
+    full_name_query     = search_query.construct
     # step2
-    search_engines  = %w[startpage bing google]
-    threaded_get = ThreadedGetParse.new(full_name_query, search_engines)
+    search_engines      = %w[startpage bing google]
+    threaded_get        = ThreadedGetParse.new(full_name_query, search_engines)
     multi_query_results = threaded_get.go
+    # step3
+    common                       = Common.new
+    common.raw_multi_query_links = multi_query_results
+    deduped                      = common.dedupe
+    deduped
   end
 end
 

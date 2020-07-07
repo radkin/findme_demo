@@ -5,8 +5,8 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 
 # custom libs
-require_relative '../lib/search/search_client'
-require_relative '../lib/all_links_producer'
+require_relative '../../lib/search/search_client'
+require_relative '../../lib/all_links_producer'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 

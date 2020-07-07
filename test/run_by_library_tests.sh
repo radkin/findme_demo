@@ -15,3 +15,6 @@ jruby test/by_library/bing_parser_test.rb
 
 echo "startpage"
 jruby test/by_library/startpage_parser_test.rb
+
+echo "common test"
+jruby test/by_library/common_test.rb

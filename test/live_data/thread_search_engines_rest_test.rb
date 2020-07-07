@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 
 # custom libs
-require_relative '../lib/threaded_operations/threaded_get_parse'
+require_relative '../../lib/threaded_operations/threaded_get_parse'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 

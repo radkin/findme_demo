@@ -3,7 +3,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 
-require_relative '../bin/findme.rb'
+require_relative '../../bin/findme.rb'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
