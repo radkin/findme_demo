@@ -34,6 +34,7 @@ class Findme
     search_engines  = %w[startpage bing google]
     threaded_get = ThreadedGetParse.new(full_name_query, search_engines)
     multi_query_results = threaded_get.go
+    multi_query_results
   end
 end
 
