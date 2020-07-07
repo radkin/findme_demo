@@ -1,17 +1,21 @@
 
 class Common
-  attr_accessor :raw_multi_query_results
-
-  def initialize
-    @raw_multi_query_results = raw_multi_query_results
-  end
+  attr_accessor :raw_multi_query_links
 
   # accepts a hash of hashes and removes duplcate values
-  def dedupe(raw_multi_query_results)
-    puts "let the dedupe begin!"
+  def dedupe
+    deduped_direct      = []
+    deduped_query_links = []
+
+    @raw_multi_query_links.each do |key, value|
+      deduped_direct.push(value['direct']).compact
+      deduped_query_links.push(value['query_links']).compact
+    end
+    deduped = {
+      'direct'      => deduped_direct,
+      'query_links' => deduped_query_links
+    }
+    deduped
   end
 
-  def concat_dupes
-    puts "let the concatination begin!"
-  end
 end

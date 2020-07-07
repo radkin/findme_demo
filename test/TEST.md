@@ -7,6 +7,7 @@ There are three testing suites: by_library, producer_role, and live data.
 jruby test/by_library/bing_parser_test.rb
 jruby test/by_library/google_parser_test.rb
 jruby test/by_library/startpage_parser_test.rb
+jruby test/by_library/common_test.rb
 ```
 
 **unit tests for the producer_role**

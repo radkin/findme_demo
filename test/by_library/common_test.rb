@@ -13,13 +13,17 @@ Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
 class CommonTest < Minitest::Test
   def setup
+    # initialize deduped stub
+    stubbed_deduped_links               = DedupedMultiQueryLinks.new
+    @stubbed_deduped                    = stubbed_deduped_links.provider
+    # process raw links
     @common                             = Common.new
-    @stubbed_deduped_multi_query_links  = DedupedMultiQueryLinks.new
-    @stubbed_raw_multi_query_links      = RawMultiQueryLinks.new
+    raw_multi_query_links               = RawMultiQueryLinks.new
+    @common.raw_multi_query_links       = raw_multi_query_links.provider
+    @deduped                            = @common.dedupe
   end
 
   def test_deduper
-    assert_equal @stubbed_deduped_multi_query_links,
-      @common.dedupe(@stubbed_raw_multi_query_links)
+    assert_equal @stubbed_deduped, @deduped
   end
 end
