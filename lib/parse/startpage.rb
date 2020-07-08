@@ -9,8 +9,10 @@ class Startpage
     @query_result   = query_result
   end
 
-  def gather_direct_links
-    direct_links = []
+  def gather_all_links
+    @links            = @parser.gather_raw_links
+    direct_links      = []
+    search_queries    = []
     # filter these from list of direct links
     startpage_filters = ['www.startpage.com', 'support.startpage.com',
                          'www.startmail.com']
@@ -19,13 +21,6 @@ class Startpage
     @links.each do |link|
       direct_links.push(link) if link.match('https') && !link.match(sf)
     end
-    direct_links
-  end
-
-  def gather_all_links
-    @links          = @parser.gather_raw_links
-    direct_links    = gather_direct_links
-    search_queries  = []
     all_links       = {
       'direct' => direct_links,
       'search_queries' => search_queries

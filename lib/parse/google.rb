@@ -12,7 +12,7 @@ class Google
   def gather_all_links
     direct_links    = []
     search_queries  = []
-    patterns = [
+    patterns        = [
       /\/preferences.google(.*)/,
       /\/policies.google(.*)/,
       /\/advanced_search(.*)/,
