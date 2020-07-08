@@ -9,25 +9,21 @@ class Bing
     @query_result   = query_result
   end
 
-  def gather_direct_links
-    direct_links = []
-    @links.each do |link|
-      direct_links.push(link) if link.match('https') && !link.match('go.microsoft.com')
-    end
-    direct_links
-  end
-
-  def gather_search_queries
-    @links.map { |link| link.split(%r{/search\?q=})[1] }.compact
-  end
-
   def gather_all_links
+    direct_links    = []
+    search_queries  = []
     @links          = @parser.gather_raw_links
-    direct_links    = gather_direct_links
-    search_queries  = gather_search_queries
-    all_links       = {
-      'direct' => direct_links,
-      'search_queries' => search_queries
+    @links.each do |link|
+      if link.match('https') && !link.match('go.microsoft.com')
+        direct_links.push(link)
+      else
+        next unless link.match(/\/search(.*)/)
+        search_queries.push(link)
+      end
+    end
+    all_links           = {
+      'direct'          => direct_links,
+      'search_queries'  => search_queries
     }
     all_links
   end
