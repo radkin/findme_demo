@@ -2,6 +2,9 @@ language: ruby
 rvm:
  - jruby
 
+before_install:
+  - gem install bundler
+
 jobs:
   include:
     - stage: Test, Unit, Lint, Coverage
