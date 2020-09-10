@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+ - 2.5
+ - jruby
+
+before_install:
+  - gem install bundler
+
+jobs:
+  include:
+    - stage: Test, Unit, Lint, Coverage
+      script:
+        - bundle install
+        - test/run_all_tests.sh
