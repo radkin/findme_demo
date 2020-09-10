@@ -8,6 +8,9 @@ os: linux
 dist: xenial
 
 jobs:
+  allow_failures:
+    env:
+      - CAN_FAIL=true
   include:
     - stage: By Library Unit Tests
       script:
@@ -22,6 +25,7 @@ jobs:
         - test/run_live_data_tests.sh
 
     - stage: Linting and Enforcement
+      env: CAN_FAIL=true
       script:
         - bundle exec rubocop
         - bundle exec reek .
