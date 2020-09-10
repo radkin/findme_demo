@@ -21,5 +21,4 @@ class ParserTest < Minitest::Test
   def test_parser
     assert_equal @stubbed_bing_all_links, @bing.gather_all_links
   end
-
 end

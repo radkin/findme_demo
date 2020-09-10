@@ -21,7 +21,7 @@ class Startpage
     @links.each do |link|
       direct_links.push(link) if link.match('https') && !link.match(sf)
     end
-    all_links       = {
+    all_links = {
       'direct' => direct_links,
       'search_queries' => search_queries
     }

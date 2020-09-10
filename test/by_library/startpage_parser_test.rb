@@ -21,5 +21,4 @@ class ParserTest < Minitest::Test
   def test_parser
     assert_equal @stubbed_startpage_all_links, @startpage.gather_all_links
   end
-
 end

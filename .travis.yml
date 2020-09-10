@@ -7,4 +7,10 @@ rvm:
 os: linux
 dist: xenial
 script:
+  - echo "TESTS BY LIBRARY"
+  - test/run_by_library_tests.sh
+  - echo "TESTS BY PRODUCER ROLE"
+  - test/run_producer_role_tests.sh
   - test/run_all_tests.sh
+  - bundle exec rubocop
+  - bundle exec reek .
