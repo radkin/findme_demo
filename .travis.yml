@@ -9,13 +9,13 @@ dist: xenial
 
 jobs:
   include:
-    - stage: Bt Library Unit Tests
+    - stage: By Library Unit Tests
       script:
         - test/run_by_library_tests.sh
 
     - stage: Producer Role Unit Tests
       script:
-        - test/run_producer_roles_tests.sh
+        - test/run_producer_role_tests.sh
 
     - stage: Live Data Unit Tests
       script:
