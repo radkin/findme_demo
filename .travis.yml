@@ -3,7 +3,8 @@ rvm:
  - jruby
 
 before_install:
-  - gem install bundler
+- yes | gem update --system --force
+- gem install bundler
 
 jobs:
   include:
