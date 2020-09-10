@@ -1,9 +1,10 @@
+env:
+  global:
+    - JRUBY_OPTS="--debug"
 language: ruby
 rvm:
   - jruby-9.2.13.0
-
-jobs:
-  include:
-    - stage: Test, Unit, Lint, Coverage
-      script:
-        - test/run_all_tests.sh
+os: linux
+dist: xenial
+script:
+  - test/run_all_tests.sh
