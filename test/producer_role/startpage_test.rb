@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require 'minitest/reporters'
 
@@ -6,7 +8,7 @@ require_relative '../../lib/parse/startpage'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
-@query_result = ""
+@query_result = ''
 
 class StartpageTest < MiniTest::Test
   include SearchEngineInterfaceTest
@@ -16,5 +18,4 @@ class StartpageTest < MiniTest::Test
   end
 
   # other tests that rely on startpage
-
 end

@@ -1,0 +1,31 @@
+env:
+  global:
+    - JRUBY_OPTS="--debug"
+language: ruby
+rvm:
+  - jruby-9.2.13.0
+os: linux
+dist: xenial
+
+jobs:
+  allow_failures:
+    env:
+      - CAN_FAIL=true
+  include:
+    - stage: By Library Unit Tests
+      script:
+        - test/run_by_library_tests.sh
+
+    - stage: Producer Role Unit Tests
+      script:
+        - test/run_producer_role_tests.sh
+
+    - stage: Live Data Unit Tests
+      script:
+        - test/run_live_data_tests.sh
+
+    - stage: Linting and Enforcement
+      env: CAN_FAIL=true
+      script:
+        - bundle exec rubocop
+        - bundle exec reek .

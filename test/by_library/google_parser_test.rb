@@ -21,5 +21,4 @@ class ParserTest < Minitest::Test
   def test_parser
     assert_equal @stubbed_google_all_links, @google.gather_all_links
   end
-
 end

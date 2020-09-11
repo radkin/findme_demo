@@ -37,13 +37,12 @@ class Findme
     threaded_get        = ThreadedGetParse.new(full_name_query, search_engines)
     multi_query_results = threaded_get.go
     multi_query_results
-=begin NOT READY FOR THIS!
-    # step3
-    common                       = Common.new
-    common.raw_multi_query_links = multi_query_results
-    deduped                      = common.dedupe
-    deduped
-=end
+    # NOT READY FOR THIS!
+    #     # step3
+    #     common                       = Common.new
+    #     common.raw_multi_query_links = multi_query_results
+    #     deduped                      = common.dedupe
+    #     deduped
   end
 end
 

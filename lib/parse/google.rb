@@ -13,23 +13,23 @@ class Google
     direct_links    = []
     search_queries  = []
     patterns        = [
-      /\/preferences.google(.*)/,
-      /\/policies.google(.*)/,
-      /\/advanced_search(.*)/,
-      /\/?output(.*)/,
-      /\/\?sa=X&ved(.*)/
+      %r{/preferences.google(.*)},
+      %r{/policies.google(.*)},
+      %r{/advanced_search(.*)},
+      %r{/?output(.*)},
+      %r{/\?sa=X&ved(.*)}
     ]
-    @links          = @parser.gather_raw_links
+    @links = @parser.gather_raw_links
     @links.each do |link|
-      if link.match(/\/search?(.*)/)
+      if link.match?(%r{/search?(.*)})
         search_queries.push(link)
-      elsif !patterns.any? { |pattern| pattern.match?(link) }
+      elsif patterns.none? { |pattern| pattern.match?(link) }
         direct_links.push(link)
       end
     end
-    all_links           = {
-      'direct'          => direct_links,
-      'search_queries'  => search_queries
+    all_links = {
+      'direct' => direct_links,
+      'search_queries' => search_queries
     }
     all_links
   end

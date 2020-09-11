@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require 'minitest/reporters'
 
@@ -6,7 +8,7 @@ require_relative '../../lib/parse/google'
 
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(color: true)]
 
-@query_result = ""
+@query_result = ''
 
 class GoogleTest < MiniTest::Test
   include SearchEngineInterfaceTest
@@ -16,5 +18,4 @@ class GoogleTest < MiniTest::Test
   end
 
   # other tests that rely on google
-
 end

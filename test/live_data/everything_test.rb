@@ -13,7 +13,7 @@ class EverythingTest < Minitest::Test
   def test_findme_binary
     findme = Findme.new
     results = findme.main
-    results.each do |key, value|
+    results.each do |_key, value|
       assert value.length >= 1
     end
   end

@@ -17,13 +17,14 @@ class Bing
       if link.match('https') && !link.match('go.microsoft.com')
         direct_links.push(link)
       else
-        next unless link.match(/\/search(.*)/)
+        next unless link.match?(%r{/search(.*)})
+
         search_queries.push(link)
       end
     end
-    all_links           = {
-      'direct'          => direct_links,
-      'search_queries'  => search_queries
+    all_links = {
+      'direct' => direct_links,
+      'search_queries' => search_queries
     }
     all_links
   end
