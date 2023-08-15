@@ -16,4 +16,4 @@ bash test/run_live_data_tests.sh
 
 # WHOLE THING
 echo "end to end test"
-jruby test/live_data/everything_test.rb
+ruby test/live_data/everything_test.rb

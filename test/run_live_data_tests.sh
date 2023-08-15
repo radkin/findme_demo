@@ -8,10 +8,10 @@ echo "================== running unit tests =================="
 echo "---- live data unit test suite ----"
 
 echo "---- search_test ----"
-jruby test/live_data/search_test.rb
+ruby test/live_data/search_test.rb
 
 echo "---- search_parse_all_engines_test ----"
-jruby test/live_data/search_parse_all_engines_test.rb
+ruby test/live_data/search_parse_all_engines_test.rb
 
 echo "---- threaded_test ----"
-jruby test/live_data/thread_search_engines_rest_test.rb
+ruby test/live_data/thread_search_engines_rest_test.rb
