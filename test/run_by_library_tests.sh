@@ -8,13 +8,13 @@ echo "================== running unit tests =================="
 echo "---- By Library unit test suite ----"
 
 echo "google"
-jruby test/by_library/google_parser_test.rb
+ruby test/by_library/google_parser_test.rb
 
 echo "bing"
-jruby test/by_library/bing_parser_test.rb
+ruby test/by_library/bing_parser_test.rb
 
 echo "startpage"
-jruby test/by_library/startpage_parser_test.rb
+ruby test/by_library/startpage_parser_test.rb
 
 echo "common test"
-jruby test/by_library/common_test.rb
+ruby test/by_library/common_test.rb

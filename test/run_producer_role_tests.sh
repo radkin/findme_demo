@@ -8,10 +8,10 @@ echo "================== running unit tests =================="
 echo "---- Producer role unit test suite ----"
 
 echo "google"
-jruby test/producer_role/google_test.rb
+ruby test/producer_role/google_test.rb
 
 echo "bing"
-jruby test/producer_role/bing_test.rb
+ruby test/producer_role/bing_test.rb
 
 echo "startpage"
-jruby test/producer_role/startpage_test.rb
+ruby test/producer_role/startpage_test.rb

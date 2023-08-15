@@ -4,28 +4,28 @@ There are three testing suites: by_library, producer_role, and live data.
 
 **unit tests by_library**
 ```bash
-jruby test/by_library/bing_parser_test.rb
-jruby test/by_library/google_parser_test.rb
-jruby test/by_library/startpage_parser_test.rb
-jruby test/by_library/common_test.rb
+ruby test/by_library/bing_parser_test.rb
+ruby test/by_library/google_parser_test.rb
+ruby test/by_library/startpage_parser_test.rb
+ruby test/by_library/common_test.rb
 ```
 
 **unit tests for the producer_role**
 ```bash
-jruby test/producer_role/bing_test.rb
-jruby test/producer_role/google_test.rb
-jruby test/producer_role/startpage_parser_test.rb
+ruby test/producer_role/bing_test.rb
+ruby test/producer_role/google_test.rb
+ruby test/producer_role/startpage_parser_test.rb
 ```
 
 **functional tests on live data**
 Here we can more easily find edge cases:
 
 ```bash
-jruby test/live_data/search_test.rb
-jruby test/live_data/search_parse_all_engines_test.rb
-jruby test/live_data/threaded_test_search_engines_rest.rb
+ruby test/live_data/search_test.rb
+ruby test/live_data/search_parse_all_engines_test.rb
+ruby test/live_data/threaded_test_search_engines_rest.rb
 
-jruby test/live_data/everything_test.rb
+ruby test/live_data/everything_test.rb
 ```
 
 * **search test**: query construction, reading user provided json file, confirm

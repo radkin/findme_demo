@@ -2,14 +2,14 @@
 Find web results that are an invasion of your privacy
 
 ## Certified for the following environment
-* JRuby version 9.2.11.1
-* Ubuntu 18.04
+* Ruby version 3.2.2
+* Ubuntu 22.04
 
 ## Up and running
 ```bash
 rbenv install -l
-rbenv install jruby-X.X.X.X
-jruby -v
+rbenv install 3.x.x
+ruby -v
 cd findme_demo
 gem install bundler
 bundle install
@@ -21,7 +21,7 @@ If you get an error about Gemfile.lock and versions, try this
 
 ## Directions for use
 * use the myPersonal.json template to create initial search criteria
-* run `jruby bin/findme.rb` and wait for results
+* run `ruby bin/findme.rb` and wait for results
 
 ## Testing
 see [TEST.md](./test/TEST.md)
